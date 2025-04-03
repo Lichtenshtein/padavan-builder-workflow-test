@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Отключение log wireguard debug
 sed -i 's/func_enable_kernel_param "CONFIG_WIREGUARD_DEBUG"/func_disable_kernel_param "CONFIG_WIREGUARD_DEBUG"/' padavan-ng/trunk/build_firmware.sh
 
@@ -10,3 +12,5 @@ busybox_enable() {
 busybox_enable CONFIG_NC
 busybox_enable CONFIG_NC_EXTRA
 busybox_enable CONFIG_NC_110_COMPAT
+
+echo "CONFIG_NETCAT=y" >> padavan-ng/trunk/configs/boards/busybox.config
