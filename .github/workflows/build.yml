@@ -12,7 +12,7 @@ jobs:
     container: registry.gitlab.com/hadzhioglu/padavan-ng
     defaults: { run: { shell: bash } }
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     - name: Get variables
       run: |
@@ -66,7 +66,7 @@ jobs:
         echo "BUILD_TIMESTAMP=$(date '+%Y.%m.%d_%H.%M.%S')" >> $GITHUB_ENV
 
     - name: Upload artifacts
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: padavan-ng_${{ env.CONFIG_VENDOR }}_${{ env.CONFIG_FIRMWARE_PRODUCT_ID }}_${{ env.BUILD_TIMESTAMP }}
         retention-days: 7
