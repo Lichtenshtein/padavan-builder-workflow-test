@@ -4,9 +4,9 @@ set -e
 sed -i 's/func_enable_kernel_param "CONFIG_WIREGUARD_DEBUG"/func_disable_kernel_param "CONFIG_WIREGUARD_DEBUG"/' padavan-ng/trunk/build_firmware.sh
 
 # Change building server timezone 
-ln -snf /usr/share/zoneinfo/Europe/Astrakhan /etc/localtime
-apt update
-DEBIAN_FRONTEND=noninteractive apt install tzdata -y
+# ln -snf /usr/share/zoneinfo/Europe/Astrakhan /etc/localtime
+# apt update
+# DEBIAN_FRONTEND=noninteractive apt install tzdata -y
 
 # Wi-Fi Country Code
 sed -i 's/UA/RU/g' padavan-ng/trunk/user/shared/defaults.h
