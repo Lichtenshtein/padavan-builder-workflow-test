@@ -53,7 +53,7 @@ jobs:
         wget -qO- "${{ env.PADAVAN_TOOLCHAIN_URL }}" | tar -C padavan-ng $ARCH -xf - || :
 
     - name: Run custom pre-build script
-      run: '[[ -f pre-build.sh ]] && bash -e pre-build.sh || :'
+      run: '[[ -f pre-build.sh ]] && bash -e pre-build.sh'
 
     - name: Build toolchain
       if: ${{ hashFiles('padavan-ng/toolchain/out/mipsel-linux-uclibc/sysroot/lib/libuClibc-*.so') == '' }}
@@ -108,7 +108,7 @@ jobs:
         echo "::endgroup::"
 
     - name: Run custom post-build script
-      run: '[[ -f post-build.sh ]] && bash -e post-build.sh || :'
+      run: '[[ -f post-build.sh ]] && bash -e post-build.sh'
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v7
