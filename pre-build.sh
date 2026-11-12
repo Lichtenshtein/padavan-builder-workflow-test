@@ -25,7 +25,7 @@ ZAPRET_TAGS=$(git ls-remote --tags "$ZAPRET_REPO" | awk '{print $2}' | sed 's/re
 ZAPRET_VER=$(echo "$ZAPRET_TAGS" | sort -V | tail -n 1 | sed 's/^.//')
 sed -i "s/^SRC_VER.*/SRC_VER = $ZAPRET_VER/g" padavan-ng/trunk/user/nfqws/Makefile
 cd padavan-ng/trunk/user/nfqws
-curl -o patches/firmware-specific.patch https://raw.githubusercontent.com/Lichtenshtein/padavan-builder-workflow-test/refs/heads/main/firmware-specific.patch
+curl -o patches/firmware-specific.patch https://raw.githubusercontent.com/Lichtenshtein/padavan-builder-workflow-test/refs/heads/xiaomi-mi-mini/firmware-specific.patch
 find . -maxdepth 1 -not -name Makefile -not -name patches -print0 | xargs -0 rm -rf --
 
 busybox_cfg="padavan-ng/trunk/configs/boards/busybox.config"
