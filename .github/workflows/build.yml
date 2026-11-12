@@ -4,6 +4,11 @@ run-name: "Build firmware #${{ github.run_number }}"
 on:
   workflow_dispatch:
 
+env:
+  TZ: Europe/Astrakhan
+  LANG: en_US.UTF-8
+  LC_ALL: en_US.UTF-8
+
 jobs:
   build:
     runs-on: ubuntu-24.04
@@ -24,12 +29,10 @@ jobs:
             gettext git gperf libtool libtool-bin \
             pkg-config fakeroot kmod cpio doxygen \
             texinfo help2man libncurses5-dev \
-            zlib1g-dev libsqlite3-dev gcc-multilib \
+            zlib1g-dev libsqlite3-dev gcc-multilib ca-certificates zstd \
             curl dos2unix unzip wget locales xxd libltdl-dev \
             libgmp3-dev libmpfr-dev libarchive-tools libblkid-dev
         sudo locale-gen --no-purge en_US.UTF-8 ru_RU.UTF-8
-        export LANG="en_US.UTF-8"
-        export LC_ALL="en_US.UTF-8"
 
     - name: Get variables
       run: |
@@ -50,7 +53,7 @@ jobs:
         wget -qO- "${{ env.PADAVAN_TOOLCHAIN_URL }}" | tar -C padavan-ng $ARCH -xf - || :
 
     - name: Run custom pre-build script
-      run: '[[ -f pre-build.sh ]] && . pre-build.sh || :'
+      run: '[[ -f pre-build.sh ]] && bash -e pre-build.sh || :'
 
     - name: Build toolchain
       if: ${{ hashFiles('padavan-ng/toolchain/out/mipsel-linux-uclibc/sysroot/lib/libuClibc-*.so') == '' }}
@@ -105,7 +108,7 @@ jobs:
         echo "::endgroup::"
 
     - name: Run custom post-build script
-      run: '[[ -f post-build.sh ]] && . post-build.sh || :'
+      run: '[[ -f post-build.sh ]] && bash -e post-build.sh || :'
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v7
