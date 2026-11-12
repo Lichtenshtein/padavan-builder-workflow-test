@@ -16,23 +16,23 @@ sed -i 's/pool.ntp.org/ru.pool.ntp.org/' padavan-ng/trunk/user/shared/defaults.h
 sed -i 's/time.in.ua/time.nist.gov/' padavan-ng/trunk/user/shared/defaults.h
 
 # Настройка BusyBox (включение netcat)
-busybox_cfg="padavan-ng/trunk/configs/boards/busybox.config"
-
-if [[ -f "$busybox_cfg" ]]; then
-  busybox_enable() {
-    sed -i "s/# $1 is not set/1=y/" "$busybox_cfg"
-  }
-
-  busybox_enable CONFIG_NC
-  busybox_enable CONFIG_NC_EXTRA
-  busybox_enable CONFIG_NC_110_COMPAT
-
-  if ! grep -q "^CONFIG_NETCAT=y" "$busybox_cfg"; then
-    echo "CONFIG_NETCAT=y" >> "$busybox_cfg"
-  fi
-else
-  echo "Внимание: файл $busybox_cfg не найден!"
-fi
+# busybox_cfg="padavan-ng/trunk/configs/boards/busybox.config"
+# 
+# if [[ -f "$busybox_cfg" ]]; then
+#   busybox_enable() {
+#     sed -i "s/# $1 is not set/1=y/" "$busybox_cfg"
+#   }
+# 
+#   busybox_enable CONFIG_NC
+#   busybox_enable CONFIG_NC_EXTRA
+#   busybox_enable CONFIG_NC_110_COMPAT
+# 
+#   if ! grep -q "^CONFIG_NETCAT=y" "$busybox_cfg"; then
+#     echo "CONFIG_NETCAT=y" >> "$busybox_cfg"
+#   fi
+# else
+#   echo "Внимание: файл $busybox_cfg не найден!"
+# fi
 
 # Настройка версии прошивки
 sed -i 's/^FIRMWARE_ROOTFS_VER.*/FIRMWARE_ROOTFS_VER=3.9L/' padavan-ng/trunk/versions.inc
