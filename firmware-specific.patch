@@ -101,9 +101,9 @@ index e680e49..9da10d6 100644
 -#define syscall_nr (offsetof(struct seccomp_data, nr))
 -#define arch_nr (offsetof(struct seccomp_data, arch))
 -#define syscall_arg(x) (offsetof(struct seccomp_data, args[x]))
-++//#define syscall_nr (offsetof(struct seccomp_data, nr))
-++//#define arch_nr (offsetof(struct seccomp_data, arch))
-++//#define syscall_arg(x) (offsetof(struct seccomp_data, args[x]))
++//#define syscall_nr (offsetof(struct seccomp_data, nr))
++//#define arch_nr (offsetof(struct seccomp_data, arch))
++//#define syscall_arg(x) (offsetof(struct seccomp_data, args[x]))
  
  #ifndef __AUDIT_ARCH_64BIT
  #define __AUDIT_ARCH_64BIT 0x80000000
