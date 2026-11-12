@@ -20,7 +20,7 @@ busybox_cfg="padavan-ng/trunk/configs/boards/busybox.config"
 
 if [[ -f "$busybox_cfg" ]]; then
   busybox_enable() {
-    sed -i "s/# $1 is not set/1=y/" "busybox_cfg"
+    sed -i "s/# $1 is not set/1=y/" "$busybox_cfg"
   }
 
   busybox_enable CONFIG_NC
